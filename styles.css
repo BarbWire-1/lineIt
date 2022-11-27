@@ -1,0 +1,128 @@
+/*
+ *   Copyright (c) 2022 
+ *   All rights reserved.
+ */
+ body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color:#91eae4;
+    
+    font-family:Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    
+}
+
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 150px;
+    height: 100vh;
+    background-color: darkslategrey;
+    box-shadow: 5px 0px 20px #515050;
+    float: left;
+}
+#toolbar * {
+    margin: 6px;
+ 
+}
+#toolbar label {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-left: 8px;
+    
+}
+#buttons {
+    width:100%;
+    margin-left: 0;
+    margin-top: 200px;
+}
+
+ button {
+    background-color:#86a8e7;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    /* padding: 2px; */
+    margin-top: 10px;
+    width: 136px;
+    height: 50px;
+    font-size: 15px;
+    text-shadow: 2px 2px 5px #303030;
+  
+}
+button:hover {
+    background-color:#4f638a;
+    box-shadow: 5px 5px 10px black;
+}
+#toolbar h1, h3{
+    
+    margin-left: 8px;
+    margin-top: 20px;
+    background: #7f7fd5;
+    background: -webkit-linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+    background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5 );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+/* #toolbar h1 {
+    font-size:30px;
+    border-bottom: 1px solid #86a8e7;
+    
+} */
+#toolbar h3 {
+    margin-top: 50px;
+    margin-left: 8px;
+}
+.drawing-board {
+    width: 100vw;
+    float:right;
+    /* background-color:azure */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#drawingBoard {
+    /* width: 500px;
+    height: 500px; */
+    background-color: white;
+    box-shadow: 5px 5px 20px #515050;
+		overflow: scroll;
+}
+
+.color-input-wrapper {
+    height: 1.5em;
+		min-height: 1.5em;
+    width: 1.5em;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgb(4, 72, 67);
+    box-shadow: 3px 3px 10px #212121;
+  }
+  .color-input-wrapper  input[type=color] {
+      position: absolute;
+      height: 4em;
+      width: 4em;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      
+      margin: 0;
+      padding: 0;
+      
+    }
+   

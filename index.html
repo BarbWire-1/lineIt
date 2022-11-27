@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Line.It</title>
+</head>
+
+<body>
+    <section class="container">
+        <div id="toolbar">
+            <h1>Line.It</h1>
+            <h3>Canvas</h3>
+            <label for="pageColor">Color</label>
+            <div class="color-input-wrapper">
+                <input id="pageColor" name="pageColor" type="color" value="#ffffff">
+            </div>
+
+            <label for="pageWidth">Width</label>
+            <input id="pageWidth" name="pageWidth" type="number" value="1000">
+            <label for="pageHeight">Height</label>
+            <input id="pageHeight" name="pageHeight" type="number" value="774">
+
+            <h3>Line</h3>
+            <label for="stroke">Color</label>
+            <div class="color-input-wrapper">
+                <input id="stroke" name="stroke" type="color" value="#5273f4">
+            </div>
+            <label for="lineWidth">Line Width</label>
+            <input id="lineWidth" name="lineWidth" type="number" value="5" min="1">
+
+
+            <div id="buttons">
+                <button id="clear">Clear Board</button>
+                <button id="download">Download Image</button>
+            </div>
+        </div>
+
+        <div id="page" class="drawing-board">
+            <canvas id="drawingBoard" width="1000" height="1000"></canvas>
+        </div>
+    </section>
+    <script src="./index.js"></script>
+    <script type="module" src="./Shapes/index.js"></script>
+
+
+</body>
+
+</html>
