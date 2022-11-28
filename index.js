@@ -8,7 +8,8 @@ window.onload = function () {
     const canvas = document.getElementById("drawingBoard");
     const toolbar = document.getElementById("toolbar");
 
-
+    var cursor = document.querySelector('.cursor');
+    
 
     // CANVAS----------------------------------------------------------------------------------
     const ctx = canvas.getContext("2d");
@@ -98,7 +99,11 @@ window.onload = function () {
     // DRAWING-----------------------------------------------------------------------------------
     const draw = e => {
         if (!isPainting) return;
-
+        cursor.style.opacity = 1;
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursor.style.width = cursor.style.height = lineWidth+ 'px';
+       
         //console.log(ctx.strokeStyle)
         ctx.lineWidth = lineWidth;
         ctx.strokeStyle = strokeStyle;
@@ -120,6 +125,7 @@ window.onload = function () {
     // end drawing
     canvas.addEventListener("mouseup", e => {
         isPainting = false;
+        cursor.style.opacity = 0;
         ctx.stroke();
         ctx.beginPath();
     });

@@ -126,3 +126,20 @@ button:hover {
       
     }
    
+    
+   
+      
+      .cursor {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: none;
+        border: 1px solid black;
+        opacity: 0;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        transition: width .3s, height .3s, opacity .3s;
+      }
+      
+     
