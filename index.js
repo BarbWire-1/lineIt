@@ -38,6 +38,14 @@ window.onload = function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         if (e.target.id === "download") {
+            // add canvas rect only here for download
+            // otherwise bg is div bg to be able to switch color
+            
+            // draws following behind existing
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = canvas.style.backgroundColor;
+            console.log(canvas.style.backgroundColor)
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             const link = document.createElement('a');
             link.href = canvas.toDataURL();
             link.download = 'download.png';
@@ -56,12 +64,8 @@ window.onload = function () {
 
         };
         if (e.target.id === "pageColor") {
-            // draws following behind existing
-            ctx.globalCompositeOperation = 'destination-over';
-            ctx.fillStyle = e.target.value;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            // from here draws on top of existing
-            ctx.globalCompositeOperation = 'source-over';
+           // DIV bg - to be able to change without losing covering drawing
+            canvas.style.backgroundColor = e.target.value
         };
 
         // check for max-size
@@ -83,6 +87,7 @@ window.onload = function () {
     });
 
     function getImage(can) {
+        
         imgData = ctx.getImageData(0, 0, can.width, can.height);
         return imgData;
     };
