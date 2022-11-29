@@ -30,12 +30,21 @@
                 <input id="stroke" name="stroke" type="color" value="#5273f4">
             </div>
             <label for="lineWidth">Line Width</label>
-            <input id="lineWidth" name="lineWidth" type="number" value="5" min="1">
+            <input id="lineWidth" name="lineWidth" type="number" value="5" min="0">
+            <label for="fill">Fill</label>
+            <div class="color-input-wrapper">
+                <input id="fill" name="fill" type="color" value='#2FF947'>
+            </div>
 
 
             <div id="buttons">
-                <button id="clear">Clear Board</button>
+                <button id="line">Line</button>
+                <button id="close">Closed Path</button>
+                <button id="fill">Filled Path</button>
+
+                <button id="clear" style="margin-top: 50px">Clear Board</button>
                 <button id="download">Download Image</button>
+
             </div>
         </div>
 
@@ -43,11 +52,8 @@
             <canvas id="drawingBoard" width="1000" height="1000"></canvas>
         </div>
     </section>
-    
-    <div class="cursor"></div>
-    <div class="cursor2"></div>
     <script src="./index.js"></script>
-   
+
 
 
 </body>

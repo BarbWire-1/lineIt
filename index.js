@@ -8,8 +8,7 @@ window.onload = function () {
     const canvas = document.getElementById("drawingBoard");
     const toolbar = document.getElementById("toolbar");
 
-    var cursor = document.querySelector('.cursor');
-    
+
 
     // CANVAS----------------------------------------------------------------------------------
     const ctx = canvas.getContext("2d");
@@ -27,10 +26,14 @@ window.onload = function () {
     }
 
     let strokeStyle = '#5273f4'
+    let fill = '#2FF947'
     let isPainting = false;
     let lineWidth = 5;
-    // let startX, startY;
-    // let randomFill = `#${(Math.floor(Math.random() * 16777215)).toString(16)}`
+    let startX, startY;
+    let randomFill = `#${(Math.floor(Math.random() * 16777215)).toString(16)}`;
+    let closedPath = false;
+    let option = 'line'
+    let options = [ 'line', 'close', 'filled' ];
 
     // TOOLBAR-----------------------------------------------------------------------------------
     // all eventListeners on toolbar
@@ -39,20 +42,23 @@ window.onload = function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         if (e.target.id === "download") {
-            // add canvas rect only here for download
-            // otherwise bg is div bg to be able to switch color
-            
-            // draws following behind existing
-            ctx.globalCompositeOperation = 'destination-over';
-            ctx.fillStyle = canvas.style.backgroundColor;
-            console.log(canvas.style.backgroundColor)
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
             const link = document.createElement('a');
             link.href = canvas.toDataURL();
             link.download = 'download.png';
             link.click();
             link.delete;
         }
+
+        if (e.target.id === "line") {
+            option = options[ 0 ];
+        }
+        if (e.target.id === "close") {
+            option = options[ 1 ];
+        }
+        if (e.target.id === "fill") {
+            option = options[ 2 ];
+        }
+
     });
 
     // apply chosen settings
@@ -64,8 +70,11 @@ window.onload = function () {
             lineWidth = e.target.value;
 
         };
+        if (e.target.id === "fill") {
+            fill = e.target.value;
+
+        };
         if (e.target.id === "pageColor") {
-           // DIV bg - to be able to change without losing covering drawing
             canvas.style.backgroundColor = e.target.value
         };
 
@@ -88,7 +97,6 @@ window.onload = function () {
     });
 
     function getImage(can) {
-        
         imgData = ctx.getImageData(0, 0, can.width, can.height);
         return imgData;
     };
@@ -99,18 +107,19 @@ window.onload = function () {
     // DRAWING-----------------------------------------------------------------------------------
     const draw = e => {
         if (!isPainting) return;
-        cursor.style.opacity = 1;
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        cursor.style.width = cursor.style.height = lineWidth+ 'px';
-       
-        //console.log(ctx.strokeStyle)
+
         ctx.lineWidth = lineWidth;
         ctx.strokeStyle = strokeStyle;
         ctx.lineCap = "round";
         let pos = getMousePos(canvas, e)
         ctx.lineTo(pos.x, pos.y)// y as height 100% for now
         ctx.stroke()
+        console.log(option)
+        if (option === 'filled') {
+            ctx.fillStyle = fill
+            ctx.fill();
+        }
+
 
     }
     // start drawing
@@ -124,8 +133,9 @@ window.onload = function () {
 
     // end drawing
     canvas.addEventListener("mouseup", e => {
+        if (option === options[ 1 ]) ctx.closePath()
+
         isPainting = false;
-        cursor.style.opacity = 0;
         ctx.stroke();
         ctx.beginPath();
     });
